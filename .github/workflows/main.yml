@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  GIT_SSH_COMMAND: 'ssh -i /appd-volume/.ssh/id_rsa -o IdentitiesOnly=yes'
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, ARM64]
+    steps:
+      - name: Pull config repo
+        run: |
+          git config --global --add safe.directory /appd-volume
+          ssh-keygen -F github.com || ssh-keyscan github.com >> /root/.ssh/known_hosts
+          cd /appd-volume
+          git pull

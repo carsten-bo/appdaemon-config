@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "schedule": [
+    "every weekend"
+  ],
+  "pre-commit": {
+    "enabled": true
+  }
+}
