@@ -1,0 +1,13 @@
+.vscode
+.ssh
+
+**/__pycache__
+
+secrets.yaml
+appdaemon.yaml
+
+www
+web
+namespaces
+lost+found
+compiled

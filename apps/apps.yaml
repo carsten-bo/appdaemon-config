@@ -1,0 +1,28 @@
+global_modules: service_helper
+
+location_actions:
+  module: location_actions
+  class: LocationActions
+  global_dependencies: service_helper
+
+media_player:
+  module: media_player
+  class: MediaPlayer
+  global_dependencies: service_helper
+
+telegram:
+  module: telegram_service
+  class: TelegramService
+  global_dependencies: service_helper
+
+lights:
+  module: lights
+  class: Lights
+  global_dependencies: service_helper
+
+heating:
+  module: heating
+  class: Heating
+  tado.user: !secret tado_user
+  tado.pw: !secret tado_pw
+  global_dependencies: service_helper
