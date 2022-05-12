@@ -19,6 +19,6 @@ jobs:
       - name: Pull config repo
         run: |
           git config --global --add safe.directory /appd-volume
-          ssh-keygen -F github.com || ssh-keyscan github.com >> /root/.ssh/known_hosts
+          ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
           cd /appd-volume
           git pull
