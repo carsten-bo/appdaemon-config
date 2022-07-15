@@ -1,8 +1,9 @@
-from service_helper import ServiceHelper
 import re
+import unicodedata
+
 from PyTado.interface import Tado
 from requests import RequestException
-import unicodedata
+from service_helper import ServiceHelper
 
 
 class Heating(ServiceHelper):
@@ -11,7 +12,9 @@ class Heating(ServiceHelper):
         pw = self.args["tado.pw"]
         self.tado = self.setup(user, pw)
         self.listen_state(self.set_window_open, "binary_sensor", new="on", duration=10)
-        self.listen_state(self.set_window_closed, "binary_sensor", new="off", duration=10)
+        self.listen_state(
+            self.set_window_closed, "binary_sensor", new="off", duration=10
+        )
 
     def set_window_open(self, entity, attribute, old, new, tado):
         match = re.match("binary_sensor.(tur|balkontur|fenster)_(\\w+)", entity)
@@ -41,10 +44,10 @@ class Heating(ServiceHelper):
     @property
     def zone_mapping(self):
         return {
-            self.remove_accents(zone["name"].lower()): zone["id"] for zone in self.tado.getZones()
+            self.remove_accents(zone["name"].lower()): zone["id"]
+            for zone in self.tado.getZones()
         }
 
     def remove_accents(self, input_str):
         nfkd_form = unicodedata.normalize("NFKD", input_str)
         return "".join([c for c in nfkd_form if not unicodedata.combining(c)])
-
