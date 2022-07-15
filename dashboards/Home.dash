@@ -1,14 +1,14 @@
 #
 # Main arguments, all optional
 #
-title: Hello Panel
+title: Home
 widget_dimensions: [120, 120]
 widget_margins: [5, 5]
 columns: 8
 
 label:
     widget_type: label
-    text: Hello World
+    text: Hello World2
 
 layout:
     - label(2x2)
