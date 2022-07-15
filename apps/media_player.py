@@ -32,16 +32,19 @@ class MediaPlayer(ServiceHelper):
     def recently_played_off(self, kwargs):
         self.log("Recently played turned off.")
         self.call_service(
-            "input_boolean/turn_off", entity_id="input_boolean.recently_playing",
+            "input_boolean/turn_off",
+            entity_id="input_boolean.recently_playing",
         )
 
     def turn_on_actions(self, entity, attribute, old, new, kwargs):
         self.log("Pausing media & setting volumes")
         self.call_service(
-            "media_player/media_pause", entity_id="media_player.echo_wz",
+            "media_player/media_pause",
+            entity_id="media_player.echo_wz",
         )
         self.call_service(
-            "input_boolean/turn_on", entity_id="input_boolean.recently_playing",
+            "input_boolean/turn_on",
+            entity_id="input_boolean.recently_playing",
         )
         self.call_service(
             "media_player/volume_set",
@@ -66,7 +69,8 @@ class MediaPlayer(ServiceHelper):
 
         if self.get_state("input_boolean.recently_playing") == "on":
             self.call_service(
-                "media_player/media_play", entity_id="media_player.echo_wz",
+                "media_player/media_play",
+                entity_id="media_player.echo_wz",
             )
 
     def set_tv_scene(self, entity, attribute, old, new, kwargs):
