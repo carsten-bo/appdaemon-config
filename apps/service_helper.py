@@ -14,15 +14,15 @@ class ServiceHelper(hass.Hass):
         entity, required_state = self.condition_mapping.get(only)
         return self.get_state(entity) == required_state 
 
-    def notify(self, who, message, only_away=True):
+    def notify(self, who, message, only_away=True, **kwargs):
         if only_away:
             if not self.at_home(who): 
                 self.log(f"not at home, notifying")
-                super().call_service(f"notify/{who}", message=message)
+                super().call_service(f"notify/{who}", message=message, **kwargs)
             else:
                 self.log(f"Will not notify because {who} is at home and notifications are set to only_away")
         else:
-            super().call_service(f"notify/{who}", message=message)
+            super().call_service(f"notify/{who}", message=message, **kwargs)
 
     def at_home(self, who):
         if self.get_state(f"group.{who}") == "home":
