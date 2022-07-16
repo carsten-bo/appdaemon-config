@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  GIT_SSH_COMMAND: 'ssh -i /appd-volume/.ssh/id_rsa -o IdentitiesOnly=yes'
+  GIT_SSH_COMMAND: "ssh -i /appd-volume/.ssh/id_rsa -o IdentitiesOnly=yes"
 
 jobs:
   build:
@@ -19,6 +19,6 @@ jobs:
       - name: Pull config repo
         run: |
           git config --global --add safe.directory /appd-volume
-          ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keygen -F github.com || ssh-keyscan github.com >> "$HOME/.ssh/known_hosts"
           cd /appd-volume
           git pull
