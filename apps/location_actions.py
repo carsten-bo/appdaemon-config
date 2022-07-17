@@ -10,7 +10,8 @@ class LocationActions(ServiceHelper):
             new="on",
         )
         self.listen_state(
-            self.test, "binary_sensor.carsten_presence", old="off", new="on"
+            self.test,
+            "binary_sensor.balkontur_wohnzimmer",
         )
         self.listen_state(
             self.carsten_left_home,
