@@ -57,7 +57,9 @@ class LocationActions(ServiceHelper):
         # self.notify("carsten", f"{self.friendly_name(entity)} left home")
 
     def test(self, entity, attribute, old, new, kwargs):
-        self.send(
+        self.notify(
+            who="carsten",
             message="Test Home Action",
+            only_away=False,
             data={"inline_keyboard": ["At Home:/at_home, Away:/away"]},
         )
